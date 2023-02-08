@@ -1,6 +1,21 @@
+using deh.api.DTO;
+using deh.api.Exceptions;
+
 namespace deh.api.Services;
 
-public class UserService
+public class UserService : IUserService
 {
-    
+    private readonly  List<UserRequest> _users;
+
+    public UserService()
+    {
+        _users = new List<UserRequest>();
+    }
+    public async Task Add(UserRequest userRequest)
+    {
+        if (_users.Exists(x => x.PESEL == userRequest.PESEL))
+            throw new UserAlreadyExistException();
+        
+        _users.Add(userRequest);
+    }
 }

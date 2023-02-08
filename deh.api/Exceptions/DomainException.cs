@@ -1,6 +1,6 @@
 namespace deh.api.Exceptions;
 
-public class DomainException
+public class DomainException : Exception
 {
     
 }

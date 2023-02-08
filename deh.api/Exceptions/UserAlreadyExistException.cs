@@ -1,6 +1,6 @@
 namespace deh.api.Exceptions;
 
-public class UserAlreadyExistException
+public class UserAlreadyExistException : DomainException
 {
     
 }

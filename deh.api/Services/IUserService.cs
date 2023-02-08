@@ -1,6 +1,8 @@
+using deh.api.DTO;
+
 namespace deh.api.Services;
 
-public interface IUser
+public interface IUserService
 {
-    public Task Add();
+    public Task Add(UserRequest userRequest);
 }
