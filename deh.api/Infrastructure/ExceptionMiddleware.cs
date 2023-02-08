@@ -1,10 +1,10 @@
-using System.Net;
 using deh.api.Exceptions;
 
 namespace deh.api.Infrastructure;
 
 public class ExceptionMiddleware
 {
+    private const string ResponseContentType = "application/json";
     private readonly RequestDelegate _next;
     private readonly ILogger<ExceptionMiddleware> _logger;
     public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
@@ -32,14 +32,10 @@ public class ExceptionMiddleware
         }
     
         _logger.LogError("Unhandled exception, {0}", exception);
-        
-        context.Response.ContentType = "application/json";
-        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-        await context.Response.WriteAsync(new ErrorDetails()
-        {
-            StatusCode = context.Response.StatusCode,
-            Message = "Internal Server Error from the custom middleware."
-        }.ToString());
-    }
 
+        var problemDetails = ExceptionMapper.Map(exception);
+        context.Response.StatusCode = problemDetails.Status ?? 500;
+        context.Response.ContentType = ResponseContentType;
+        await context.Response.WriteAsJsonAsync(problemDetails);
+    }
 }
