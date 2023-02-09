@@ -1,5 +1,6 @@
 using deh.api.Exceptions;
 using deh.api.Requests;
+using deh.api.Responses;
 
 namespace deh.api.Services;
 
@@ -21,12 +22,12 @@ public class UserService : IUserService
         _users.Add(userRequest);
     }
 
-    public async Task<UserRequest> GetAsync(string Pesel)
+    public async Task<UserResponse> GetAsync(string Pesel)
     {
         var user = _users.Find(x => x.PESEL == Pesel);
         if (user is null)
             throw new UserNotFoundException(Pesel);
 
-        return user;
+        return new UserResponse{FullName = $"{user.Name} {user.Surname}"};
     }
 }
