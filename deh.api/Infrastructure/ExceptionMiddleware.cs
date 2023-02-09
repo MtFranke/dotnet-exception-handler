@@ -1,4 +1,3 @@
-using deh.api.Exceptions;
 using deh.api.Exceptions.Base;
 
 namespace deh.api.Infrastructure;

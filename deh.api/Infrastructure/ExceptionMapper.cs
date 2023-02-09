@@ -1,10 +1,9 @@
-using deh.api.Exceptions;
 using deh.api.Exceptions.Base;
 using Microsoft.AspNetCore.Mvc;
 
 namespace deh.api.Infrastructure;
 
-public class ExceptionMapper
+public abstract class ExceptionMapper
 {
     public static ProblemDetails Map(Exception exception)
     {
