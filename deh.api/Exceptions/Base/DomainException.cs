@@ -1,6 +1,6 @@
-namespace deh.api.Exceptions;
+namespace deh.api.Exceptions.Base;
 
-public class DomainException : Exception
+public abstract class DomainException : CustomException
 {
     public DomainException()
     {

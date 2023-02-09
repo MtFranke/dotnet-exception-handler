@@ -1,8 +1,9 @@
-using deh.api.DTO;
+using deh.api.Requests;
 
 namespace deh.api.Services;
 
 public interface IUserService
 {
-    public Task Add(UserRequest userRequest);
+    public Task AddAsync(UserRequest userRequest);
+    public Task<UserRequest> GetAsync(string Pesel);
 }

@@ -1,4 +1,4 @@
-namespace deh.api.DTO;
+namespace deh.api.Requests;
 
 public class UserRequest
 {

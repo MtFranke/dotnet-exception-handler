@@ -1,4 +1,5 @@
 using deh.api.Exceptions;
+using deh.api.Exceptions.Base;
 
 namespace deh.api.Infrastructure;
 
@@ -26,7 +27,7 @@ public class ExceptionMiddleware
     
     private async Task HandleExceptionAsync(HttpContext context, Exception exception)
     {
-        if (exception is DomainException)
+        if (exception is CustomException)
         {
             _logger.LogInformation(exception.ToString());
         }

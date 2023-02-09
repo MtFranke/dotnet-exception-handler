@@ -1,3 +1,5 @@
+using deh.api.Exceptions.Base;
+
 namespace deh.api.Exceptions;
 
 public class UserAlreadyExistException : DomainException
